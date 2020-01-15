@@ -1,0 +1,65 @@
+
+
+{% extends "index.html" %}
+
+{% block content %}
+
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Group name</th>
+                <th scope="col">Group description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                <tr>
+                    <td> {{ group.group_name }} </td>
+                    <td> {{ group.group_description }} </td>
+                    {% if current_user.is_authenticated %}
+                        <td>
+                            <button type="button" class="btn btn-warning" name="btn_edit_group"
+                                    data-group_id="{{ group.group_id }}">Edit
+                            </button>
+                            <button type="button" class="btn btn-danger" name="btn_delete_group"
+                                    data-group_id="{{ group.group_id }}">Delete
+                            </button>
+                            <button type="button" class="btn btn-success" name="btn_new_post"
+                                    data-group_id="{{ group.group_id }}">New post
+                            </button>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% for group in groups_1 %}
+                <tr>
+                    <td> {{ group.group_name }} </td>
+                    <td> {{ group.group_description }} </td>
+                    {% if current_user.is_authenticated %}
+                        <td>
+                            {#                    <button type="button" class="btn btn-warning" name="btn_edit_group" data-group_id="{{group.group_id}}">Edit</button>#}
+                            {#                    <button type="button" class="btn btn-danger" name="btn_delete_group" data-group_id="{{group.group_id}}">Delete</button>#}
+                            <button type="button" class="btn btn-success" name="btn_new_post"
+                                    data-group_id="{{ group.group_id }}">New post
+                            </button>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% if current_user.is_authenticated %}
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-success" name="btn_new_group">New group</button>
+                </td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/group.js') }}"></script>
+
+{% endblock %}

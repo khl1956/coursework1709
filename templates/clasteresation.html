@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block content %}
+{#<p ><font color="#000000"> Кількість кластерів = {{ test_list }}</font></p>#}
+<p ><font color="#000000"> Кількість кластерів = {{ count_claster }}</font></p>
+{#    <p ><font color="#000000"> Об'єкт належить кластеру № {{ row }}</font></p>#}
+
+    <h1>Pie ...</h1>
+    <div id="pie" class="bar">
+    </div>
+
+    <script src="{{ url_for('static', filename='js/d3.v5.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+
+
+    <script type="text/javascript">
+        var graphs = {{graphsJSON | safe}};
+        for(var block_id in graphs) {
+            Plotly.plot(block_id, // the ID of the div, created above
+                        graphs[block_id],{});
+        }
+    </script>
+
+{% endblock %}

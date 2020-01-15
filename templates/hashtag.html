@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Hashtag name</th>
+                <th scope="col">Hashtag views</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for hashtag in hashtags %}
+                <tr>
+                    <td> <a href="/post/{{ hashtag.hashtag_name }}">#{{ hashtag.hashtag_name }}</a> </td>
+                    <td> {{ hashtag.hashtag_views }} </td>
+                    <td>
+                            <button type="button" class="btn btn-success" name="btn_correlation"
+                                    data-hashtag_name="{{ hashtag.hashtag_name }}">Correlation
+                            </button>
+                        </td>
+                </tr>
+
+            {% endfor %}
+            <tr>
+                {# <td> <button type="button" class="btn btn-success" name="btn_new_group">New group</button> </td>#}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/hashtag.js') }}"></script>
+
+{% endblock %}
