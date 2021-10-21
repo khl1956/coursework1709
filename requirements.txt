@@ -1,6 +1,6 @@
 absl-py==0.9.0
 astor==0.8.1
-Babel==2.8.0
+Babel==2.9.1
 blinker==1.4
 Click==7.0
 cycler==0.10.0
